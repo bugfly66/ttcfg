@@ -1,0 +1,93 @@
+#nop 加载配置、逍遥行、连接信息;
+#re config.tt;
+#re goto.tt;
+#re colorpad.tt;
+#re beauty.tt
+#nop 加载鼠标点击下划线标签链接事件;
+#alias mlo {
+  #read mouse.tt;
+}:
+#alias mld {
+  #class mouse kill;
+};
+mlo;
+
+#nop 断线事件;
+#event {SESSION ACTIVATED}
+{
+	#if {"%0" == "gts"} {#read init.tt}
+};
+
+#nop 屏蔽连接提示;
+#event {GAG SESSION ACTIVATED} {#0};
+#event {GAG SESSION CONNECTED} {#0};
+#event {GAG SESSION CREATED} {#0};
+#event {GAG SESSION DEACTIVATED} {#0};
+#event {GAG SESSION DISCONNECTED} {#0};
+#event {GAG SESSION TIMED OUT} {#0};
+
+#class tmp open;
+#alias pku {#class tmp kill;#re pku.tt};
+#class tmp close;
+
+#echo {%c%h} {light yellow};
+#echo {%c%h} {light green} {【请输入 pku 指令连接至北大侠客行】};
+#echo {%c%h} {light green} {【逍遥行指令 gt】};
+#echo {%c%h} {light yellow};
+
+#nop fullme设置;
+#nop 简写;
+#alias {fm} {fullme};
+#nop 打印链接;
+#alias {slink} {#showme $link};
+#nop 手动调用浏览器;
+#alias {mxp} {#sys termux-open-url $link};
+#action {^http://fullme.pkuxkx.net/robot.php?filename=%1} {
+  #var link {http://fullme.pkuxkx.net/robot.php?filename=%1};
+  #nop mxp;
+  #nop #system sh bot/fullme.sh %1;
+};
+
+#act {^http://fullme.pkuxkx.com/robot.php?filename=%1} {
+  #var link {http://fullme.pkuxkx.com/robot.php?filename=%1};
+  #nop mxp;
+  #nop #system sh bot/fullme.sh %1;
+};
+
+#nop ==通知样式包装==;
+#nop 彩虹色;
+#function bc0 {
+  #local tmp @color_radom{%0};
+  #return $tmp;
+};
+#nop 绿色;
+#function bc1 {
+  #local tmp {<129>-->%0<--<099>};
+  #return $tmp;
+};
+#nop 青色;
+#function bc2 {
+  #local tmp {<169>...%0...<099>};
+  #return $tmp;
+};
+#nop 黄色;
+#function bc3 {
+  #local tmp {---<139>%0<099>---};
+  #return $tmp;
+};
+
+/*
+
+#nop ==命令回显==;
+#EVENT {SEND OUTPUT} {
+  #nop 剥离前后空字符;
+  #format {temp} {%p} {%0};
+  #if {"$temp" != ""} {
+    #nop 绿黄配色;
+    #echo {<129>-->CMD:[<139>$temp<129>]<--<099>};
+    #nop 彩虹色;
+    #nop #echo @bc0{-->CMD:[$temp]<--};
+  };
+};
+
+*/

@@ -1,0 +1,19 @@
+#nop 自定义脚本;
+#alias {lgtk} {
+#echo {%c%h} {light green} {自动打坐吐纳};
+#ticker {打坐} {zuo;dazuo 70;#delay 8 {tuna 65}} {20};
+};
+
+#alias {unlgtk} {
+#unticker 打坐;
+#echo {%c%h} {light red} {取消自动打坐吐纳};
+};
+#alias {xuetk} {
+#echo {%c%h} {light green} {自动学习};
+#ticker {学习} {yun regenerate;#delay 15 {dazuo 70};xue xiantian-gong from yin zhiping for 10;xue force from yin zhiping for 10;e;e;n;zuo;s;w;w} {35};
+};
+
+#alias {unxuetk} {
+   #unticker 学习;
+   #echo {%c%h} {light red} {取消学习};
+};
