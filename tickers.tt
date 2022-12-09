@@ -17,3 +17,14 @@
    #unticker 学习;
    #echo {%c%h} {light red} {取消学习};
 };
+
+#alias {tntk} {
+#echo {%c%h} {light green} {自动吐纳};
+#ticker {吐纳} {zuo;tuna 200;#delay 8 {yun regenerate}} {20};
+};
+
+#alias {untntk} {
+#unticker 吐纳;
+#echo {%c%h} {light red} {取消自动吐纳};
+};
+
