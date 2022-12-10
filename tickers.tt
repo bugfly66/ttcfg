@@ -20,11 +20,21 @@
 
 #alias {tntk} {
 #echo {%c%h} {light green} {自动吐纳};
-#ticker {吐纳} {zuo;tuna 200;#delay 8 {yun regenerate}} {20};
+#ticker {吐纳} {zuo;tuna 200;#delay 17 {yun regenerate}} {27};
 };
 
 #alias {untntk} {
 #unticker 吐纳;
 #echo {%c%h} {light red} {取消自动吐纳};
+};
+
+#alias {dztk} {
+#echo {%c%h} {light green} {自动打坐};
+#ticker {打坐} {zuo;dazuo 200} {33};
+};
+
+#alias {undztk} {
+#unticker 打坐;
+#echo {%c%h} {light red} {取消自动打坐};
 };
 
